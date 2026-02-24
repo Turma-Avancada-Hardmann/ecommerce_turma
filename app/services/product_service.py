@@ -16,11 +16,19 @@ class ProductService:
             price=product.price,
             active=product.active
         )
+        self.db_session.add(product_on_db)
 
         try:
-            self.db_session.add(product_on_db)
+            self.db_session.commit()
+            self.db_session.refresh
+            return product_on_db
         except Exception as e:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail={e}
             )
+        
+    def get_all_products(self):
+        return self.db_session.query(
+            Produto
+        )

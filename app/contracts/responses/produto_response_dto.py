@@ -6,4 +6,3 @@ class ProductResponseDto(CustomBaseModel):
     description: str
     price: float
     active: bool
-    created_at: str

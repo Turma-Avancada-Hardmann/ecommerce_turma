@@ -6,4 +6,4 @@ class PedidoRequestDto(CustomBaseModel):
     usuario_id: int
     total_amount: float
     status: PedidoStatus
-    created_at: str
+    # created_at: str
