@@ -55,6 +55,10 @@ class Produto(Base):
         back_populates="produto",
         cascade="all, delete"
     )
+    
+    itens: Mapped[List["ItemPedido"]] = relationship(
+        back_populates="produto"
+    )
 
 
 class AtributoProduto(Base):
@@ -101,3 +105,33 @@ class Pedido(Base):
     usuario: Mapped["Usuario"] = relationship(
         back_populates="pedidos"
     )
+
+    itens: Mapped[List["ItemPedido"]] = relationship(
+        back_populates="pedido",
+        cascade="all, delete"
+    )
+
+
+class ItemPedido(Base):
+    __tablename__ = "itens_pedido"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+
+    pedido_id: Mapped[int] = mapped_column(
+        ForeignKey("pedidos.id", ondelete="CASCADE"),
+        nullable=False
+    )
+
+    produto_id: Mapped[int] = mapped_column(
+        ForeignKey("produtos.id", ondelete="CASCADE"),
+        nullable=False
+    )
+
+    quantidade: Mapped[int] = mapped_column(Integer, nullable=False)
+
+    preco_unitario: Mapped[float] = mapped_column(DECIMAL(10, 2), nullable=False)
+
+    subtotal: Mapped[float] = mapped_column(DECIMAL(10, 2), nullable=False)
+
+    pedido: Mapped["Pedido"] = relationship(back_populates="itens")
+    produto: Mapped["Produto"] = relationship()
