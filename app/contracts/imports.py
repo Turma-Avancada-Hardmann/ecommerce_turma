@@ -7,3 +7,4 @@ from app.contracts.requests.usuario_request_dto import *
 from app.contracts.responses.pedido_response_dto import *
 from app.contracts.responses.produto_response_dto import *
 from app.contracts.responses.usuario_response_dto import *
+from app.contracts.requests.user_login import *

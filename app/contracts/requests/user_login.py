@@ -3,8 +3,7 @@ from pydantic import EmailStr, field_validator
 import re
 
 
-class CreateUserRequestDto(CustomBaseModel):
-    name: str
+class UserLogin(CustomBaseModel):
     email: EmailStr
     password: str
 
