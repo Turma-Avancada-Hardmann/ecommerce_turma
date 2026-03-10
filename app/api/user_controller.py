@@ -2,7 +2,6 @@ from fastapi import APIRouter, Response, status, Depends
 from app.services.user_service import ServiceUser
 from app.contracts.imports import UserResponseDto
 from app.contracts.imports import CreateUserRequestDto
-from app.contracts.imports import GetUserRequestDto
 from app.api.deps import get_db_session
 from sqlalchemy.orm import Session
 
